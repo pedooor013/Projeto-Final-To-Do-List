@@ -27,6 +27,11 @@ const question = (query) => new Promise(resolve => rl.question(query, resolve));
 // Função para adicionar uma tarefa
 async function addTask() {
     const userTask = await question('\nDigite a sua tarefa a ser feita: ');
+    if(userTask=== ''){
+        console.log('Digite um valor valido...');
+        addTask();
+        return;
+    }
     incompleteTasks.push({ description: userTask, completed: false });
     console.log('A tarefa foi adicionada com sucesso...');
     showMenu();  // Chama o menu novamente após adicionar a tarefa
